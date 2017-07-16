@@ -329,7 +329,7 @@ namespace System.Collections.Concurrent
             GetBucketAndLockNo(comparer.GetHashCode(key), out bucketNo, out lockNoUnused, tables.m_buckets.Length, tables.m_locks.Length);
 
             // We can get away w/out a lock here.
-            // The Volatile.Read ensures that the load of the fields of 'n' doesn't move before the load from buckets[i].
+            // The Volatile.Read ensures that we have a copy of the reference to buckets[bucketNo].
             Node n = Volatile.Read<Node>(ref tables.m_buckets[bucketNo]);
 
             while (n != null)
@@ -520,7 +520,7 @@ namespace System.Collections.Concurrent
 
             for (int i = 0; i < buckets.Length; i++)
             {
-                // The Volatile.Read ensures that the load of the fields of 'current' doesn't move before the load from buckets[i].
+                // The Volatile.Read ensures that we have a copy of the reference to buckets[i].
                 Node current = Volatile.Read<Node>(ref buckets[i]);
 
                 while (current != null)
