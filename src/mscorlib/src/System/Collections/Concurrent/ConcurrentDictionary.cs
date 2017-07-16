@@ -585,7 +585,7 @@ namespace System.Collections.Concurrent
                                     Node newNode = new Node(node.m_key, value, hashcode, node.m_next);
                                     if (prev == null)
                                     {
-                                        tables.m_buckets[bucketNo] = newNode;
+                                        Volatile.Write<Node>(ref tables.m_buckets[bucketNo], newNode);
                                     }
                                     else
                                     {
