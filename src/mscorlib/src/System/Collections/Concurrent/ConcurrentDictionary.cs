@@ -258,7 +258,7 @@ namespace System.Collections.Concurrent
                 lock (tables.m_locks[lockNo])
                 {
                     // If the table just got resized, we may not be holding the right lock, and must retry.
-                    // This should be a rare occurence.
+                    // This should be a rare occurrence.
                     if (tables != m_tables)
                     {
                         continue;
@@ -558,7 +558,7 @@ namespace System.Collections.Concurrent
                         Monitor.Enter(tables.m_locks[lockNo], ref lockTaken);
 
                     // If the table just got resized, we may not be holding the right lock, and must retry.
-                    // This should be a rare occurence.
+                    // This should be a rare occurrence.
                     if (tables != m_tables)
                     {
                         continue;
